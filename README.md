@@ -20,15 +20,28 @@ The project involves end-to-end machine learning pipeline steps:
 5. **Web Interface**:
    A **Gradio** interface has been integrated into the notebook to allow users to interactively predict new laptop prices using the trained Random Forest model.
 
+## Repository Structure
+
+```text
+├── assets/
+│   ├── Colab screenshot.png
+│   └── Gradio UI.png
+├── data/
+│   └── laptops.csv
+├── notebooks/
+│   └── LPP_final.ipynb
+└── README.md
+```
+
 ## Repository Contents
-- **`LPP_final.ipynb`**: The main Google Colab Jupyter Notebook containing all the code for data processing, model training, and the Gradio UI.
-- **`laptops.csv`**: The dataset used for training the model.
-- **`Colab screenshot.png`**: A screenshot showing the notebook environment.
-- **`Gradio UI.png`**: A screenshot showcasing the interactive Gradio predictions interface.
+- **`notebooks/LPP_final.ipynb`**: The main Google Colab Jupyter Notebook containing all the code for data processing, model training, and the Gradio UI.
+- **`data/laptops.csv`**: The dataset used for training the model.
+- **`assets/Colab screenshot.png`**: A screenshot showing the notebook environment.
+- **`assets/Gradio UI.png`**: A screenshot showcasing the interactive Gradio predictions interface.
 
 ## How to use
-1. Open the `LPP_final.ipynb` in [Google Colab](https://colab.research.google.com/) or a local Jupyter Notebook environment.
-2. Ensure you have the `laptops.csv` in the same directory (or upload it to your Colab session).
+1. Open the `notebooks/LPP_final.ipynb` in [Google Colab](https://colab.research.google.com/) or a local Jupyter Notebook environment.
+2. Ensure you have the `data/laptops.csv` in the same directory (or upload it to your Colab session).
 3. Run all the cells sequentially.
 4. The final cell will launch the Gradio interface. You can interact with it directly in the notebook output or open it in a new browser tab using the generated public link.
 
