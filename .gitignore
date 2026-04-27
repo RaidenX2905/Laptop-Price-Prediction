@@ -1,6 +1,7 @@
 .ipynb_checkpoints/
 __pycache__/
 *.pyc
-.streamlit/
+# .streamlit/ is removed to allow theme configuration
+
 train_model.py
 
