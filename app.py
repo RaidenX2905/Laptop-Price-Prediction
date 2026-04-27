@@ -7,32 +7,104 @@ import os
 st.set_page_config(
     page_title="Laptop Price Predictor",
     page_icon="💻",
-    layout="wide",
-    initial_sidebar_state="expanded",
+    layout="centered", # Changed to centered for a focused premium look
+    initial_sidebar_state="collapsed",
 )
 
-# Custom CSS for a more premium look
+# Custom CSS for a high-end, centered, gradient-focused look
 st.markdown("""
     <style>
-    .main {
-        background-color: #f8f9fa;
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+    
+    html, body, [class*="css"] {
+        font-family: 'Inter', sans-serif;
     }
+    
+    .main {
+        background-color: #ffffff;
+    }
+    
+    .gradient-text {
+        background: linear-gradient(90deg, #FF4B4B 0%, #FF8E53 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: 800;
+        font-size: 3.5rem;
+        text-align: center;
+        margin-bottom: 0.1rem;
+        letter-spacing: -1px;
+    }
+    
+    .subtitle {
+        text-align: center;
+        color: #64748b;
+        font-size: 1.2rem;
+        margin-bottom: 3rem;
+        font-weight: 400;
+    }
+    
+    .stSelectbox label, .stNumberInput label, .stSlider label {
+        font-weight: 600 !important;
+        color: #1e293b !important;
+    }
+    
     .stButton>button {
         width: 100%;
-        border-radius: 5px;
-        height: 3em;
-        background-color: #ff4b4b;
+        border-radius: 12px;
+        height: 3.8em;
+        background: linear-gradient(90deg, #FF4B4B 0%, #FF8E53 100%);
+        border: none;
         color: white;
-        font-weight: bold;
+        font-weight: 700;
+        font-size: 1rem;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        margin-top: 1rem;
+        box-shadow: 0 4px 15px rgba(255, 75, 75, 0.2);
     }
+    
+    .stButton>button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(255, 75, 75, 0.4);
+        border: none;
+        color: white;
+    }
+    
     .prediction-card {
-        padding: 2rem;
-        border-radius: 10px;
-        background-color: #ffffff;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        padding: 3rem;
+        border-radius: 24px;
+        background: #ffffff;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.06);
         text-align: center;
-        margin-top: 2rem;
+        margin-top: 3rem;
+        border: 1px solid #f1f5f9;
+        animation: fadeIn 0.6s ease-out;
     }
+    
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .price-value {
+        font-size: 3.5rem;
+        font-weight: 800;
+        color: #0f172a;
+        margin: 1rem 0;
+        letter-spacing: -2px;
+    }
+    
+    .price-label {
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: #94a3b8;
+        font-size: 0.8rem;
+        font-weight: 700;
+    }
+
+    /* Remove streamlit footer and menu for cleaner look */
+    #MainMenu {visibility: hidden;}
+    footer {visibility: hidden;}
+    header {visibility: hidden;}
     </style>
     """, unsafe_allow_html=True)
 
@@ -58,19 +130,15 @@ def load_data_and_model():
     return rf, le_map, df_raw
 
 def main():
-    st.title("💻 Laptop Price Predictor")
-    st.markdown("""
-    Estimate the price of a laptop based on its specifications. 
-    This model uses a **Random Forest Regressor** with high accuracy (~87% R2 score).
-    """)
+    # Header Section
+    st.markdown("<h1 class='gradient-text'>Laptop Price Predictor</h1>", unsafe_allow_html=True)
+    st.markdown("<p class='subtitle'>Professional Grade Machine Learning Estimation</p>", unsafe_allow_html=True)
 
     try:
         rf, le_map, df_raw = load_data_and_model()
     except Exception as e:
-        st.error(f"Error loading model or data: {e}. Ensure you are running from the correct directory.")
+        st.error(f"Error loading model or data: {e}. Ensure all files are in the root directory.")
         return
-
-
 
     # Get unique values for dropdowns
     name_choices = sorted(df_raw['name'].unique().tolist())
@@ -79,24 +147,26 @@ def main():
     os_choices = sorted(df_raw['os'].unique().tolist())
     storage_choices = sorted(df_raw['storage'].unique().tolist())
 
+    # Form Container
     with st.container():
-        st.subheader("Input Specifications")
-        col1, col2 = st.columns(2)
+        col1, col2 = st.columns(2, gap="large")
 
         with col1:
-            name_val = st.selectbox("Laptop Name", name_choices)
-            processor_val = st.selectbox("Processor Type", processor_choices)
-            ram_val = st.selectbox("RAM Configuration", ram_choices)
+            name_val = st.selectbox("Brand & Model Name", name_choices)
+            processor_val = st.selectbox("Processor Architecture", processor_choices)
+            ram_val = st.selectbox("Memory (RAM)", ram_choices)
             os_val = st.selectbox("Operating System", os_choices)
-            storage_val = st.selectbox("Storage Type", storage_choices)
+            storage_val = st.selectbox("Storage Capacity", storage_choices)
 
         with col2:
-            display_size_val = st.number_input("Display Size (in inch)", min_value=10.0, max_value=40.0, value=15.6, step=0.1)
-            rating_val = st.slider("Rating", min_value=1.0, max_value=5.0, value=4.3, step=0.1)
-            no_of_ratings_val = st.number_input("Number of Ratings", min_value=0, value=90)
-            no_of_reviews_val = st.number_input("Number of Reviews", min_value=0, value=11)
+            display_size_val = st.number_input("Display Size (Inches)", min_value=10.0, max_value=40.0, value=15.6, step=0.1)
+            rating_val = st.slider("User Satisfaction Rating", min_value=1.0, max_value=5.0, value=4.3, step=0.1)
+            no_of_ratings_val = st.number_input("Total Ratings Count", min_value=0, value=100)
+            no_of_reviews_val = st.number_input("Total Reviews Count", min_value=0, value=15)
 
-    if st.button("Predict Price", type="primary"):
+    st.markdown("<div style='margin-top: 2rem;'></div>", unsafe_allow_html=True)
+    
+    if st.button("Calculate Market Value"):
         # Encode categorical inputs
         try:
             encoded_name = le_map['name'].transform([name_val])[0]
@@ -123,15 +193,14 @@ def main():
             # Predict
             prediction = rf.predict(input_df)[0]
             
-            # Display result
+            # Display result in a premium card
             st.markdown(f"""
             <div class='prediction-card'>
-                <h2>Estimated Price</h2>
-                <h1 style='color: #ff4b4b;'>₹ {prediction:,.2f}</h1>
+                <div class='price-label'>Estimated Market Value</div>
+                <div class='price-value'>₹ {prediction:,.0f}</div>
+                <div style='color: #64748b; font-size: 0.9rem;'>Based on current market trends and specifications</div>
             </div>
             """, unsafe_allow_html=True)
-            
-            # NO balloons as requested.
             
         except Exception as e:
             st.error(f"Prediction Error: {e}")
