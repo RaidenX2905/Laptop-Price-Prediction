@@ -1,13 +1,13 @@
 <div align="center">
   
-# 💻 Laptop Price Prediction (LPP)
+# Laptop Price Prediction (LPP)
 
 [![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![scikit-learn](https://img.shields.io/badge/scikit--learn-F7931E?style=flat&logo=scikit-learn&logoColor=white)](https://scikit-learn.org/)
 [![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=flat&logo=streamlit&logoColor=white)](https://streamlit.io/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-### [🚀 View Live Demo](https://laptop-price-prediction-by-jsh.streamlit.app/)
+### [View Live Demo](https://lppbyjsh.streamlit.app/)
 
 An end-to-end Machine Learning project to predict laptop prices based on hardware specifications, featuring a fully trained Random Forest model and a premium web interface powered by Streamlit.
 
@@ -15,21 +15,21 @@ An end-to-end Machine Learning project to predict laptop prices based on hardwar
 
 ---
 
-## 📝 Table of Contents
-- [Live Demo](https://laptop-price-prediction-by-jsh.streamlit.app/)
-- [About the Project](#-about-the-project)
-- [Project Architecture](#-project-architecture)
-- [Repository Structure](#-repository-structure)
-- [Prerequisites](#%EF%B8%8F-prerequisites)
-- [Installation \& Setup](#%EF%B8%8F-installation--setup)
-- [How to Use](#-how-to-use)
-  - [Streamlit Web App (Recommended)](#-streamlit-web-app-recommended)
+## Table of Contents
+- [Live Demo](https://lppbyjsh.streamlit.app/)
+- [About the Project](#about-the-project)
+- [Project Architecture](#project-architecture)
+- [Repository Structure](#repository-structure)
+- [Prerequisites](#prerequisites)
+- [Installation & Setup](#installation--setup)
+- [How to Use](#how-to-use)
+  - [Streamlit Web App (Recommended)](#streamlit-web-app-recommended)
   - [Interactive Web App (Gradio)](#interactive-web-app-gradio)
-- [Model Details \& Performance](#-model-details--performance)
+- [Model Details & Performance](#model-details--performance)
 
 ---
 
-## 📖 About the Project
+## About the Project
 
 The digital marketplace for laptops is vast and continually changing. The primary goal of this repository is to provide a robust machine learning pipeline capable of estimating the price of a laptop based on its specs such as the Processor, RAM, OS, Storage capacity, and customer ratings.
 
@@ -41,7 +41,7 @@ The digital marketplace for laptops is vast and continually changing. The primar
 
 ---
 
-## 🏗 Project Architecture
+## Project Architecture
 
 1. **Data Ingestion:** Loads `laptops.csv` into a Pandas DataFrame.
 2. **Data Cleaning:** Drops irrelevant identifiers (`Unnamed: 0`, `img_link`).
@@ -52,7 +52,7 @@ The digital marketplace for laptops is vast and continually changing. The primar
 
 ---
 
-## 📂 Repository Structure
+## Repository Structure
 
 ```text
 LPP/
@@ -63,12 +63,12 @@ LPP/
 │   └── laptops.csv                # Raw dataset containing laptop specs and prices
 ├── notebooks/
 │   └── LPP_final.ipynb            # Core Jupyter/Colab notebook with all logic
-└── README.md                      # Project documentation (You are here)
+└── README.md                      # Project documentation
 ```
 
 ---
 
-## ⚙️ Prerequisites
+## Prerequisites
 
 To run this project locally, ensure you have the following installed:
 - **Python** 3.8 or higher.
@@ -76,7 +76,7 @@ To run this project locally, ensure you have the following installed:
 
 ---
 
-## 🛠️ Installation & Setup
+## Installation & Setup
 
 ### Option 1: Using Google Colab (Recommended)
 This requires zero local setup.
@@ -104,7 +104,7 @@ This requires zero local setup.
 
 ---
 
-## 🚀 How to Use
+## How to Use
 
 1. Launch your Jupyter environment by running:
    ```bash
@@ -113,13 +113,13 @@ This requires zero local setup.
 2. Ensure that the notebook is loading the `laptops.csv` file from the correct relative path (`../data/laptops.csv`). Adjust the path in the Pandas `read_csv` cell if necessary based on where your kernel is running.
 3. **Run All Cells:** Go to `Cell -> Run All` (or `Runtime -> Run all` in Colab). This will re-train the models and evaluate them on the spot.
 
-### 🌐 Streamlit Web App (Recommended)
+### Streamlit Web App (Recommended)
 
 Run the main application for a premium experience:
 ```bash
 streamlit run app.py
 ```
-Or visit the live link: [laptop-price-prediction-by-jsh.streamlit.app](https://laptop-price-prediction-by-jsh.streamlit.app/)
+Or visit the live link: [https://lppbyjsh.streamlit.app/](https://lppbyjsh.streamlit.app/)
 
 ### Interactive Web App (Gradio)
 
@@ -131,7 +131,7 @@ Simply input the laptop specifications into the dropdowns and text boxes, click 
 
 ---
 
-## 📊 Model Details & Performance
+## Model Details & Performance
 
 During the development phase, three regression algorithms were benched:
 1. **Linear Regression:** Struggled to capture the non-linear relationships between complex specs and pricing.
